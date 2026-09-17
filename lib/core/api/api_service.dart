@@ -95,14 +95,14 @@ class ApiService {
     }
   }
 
-  /// API: `GET /explorer/mempool/pending`
+  /// API: `GET /mempool/pending`
   ///
   /// 현재 메모리풀에 존재하는 모든 대기 중인 트랜잭션들을 조회한다.
   ///
   /// Returns [PendingResponse] - 대기 중인 트랜잭션 목록
   static Future<PendingResponse> fetchPending() async {
     try {
-      final response = await _dio.get('/explorer/mempool/pending');
+      final response = await _dio.get('/mempool/pending');
       final result = PendingResponse.fromJson(response.data);
       logger.i('[API SUCCESS] PendingResponse 호출 완료');
       return result;
@@ -112,7 +112,7 @@ class ApiService {
     }
   }
 
-  /// API: `GET /explorer/mempool/txx?id={id}`
+  /// API: `GET /mempool/txx?id={id}`
   ///
   /// [id] - 블록 도메인
   ///
@@ -121,7 +121,7 @@ class ApiService {
   /// Returns [TxxResponse] - 해당 도메인의 트랜잭션 정보
   static Future<TxxResponse> fetchTxxId(String id) async {
     try {
-      final response = await _dio.get('/explorer/mempool/txx?id=$id');
+      final response = await _dio.get('/mempool/txx?id=$id');
       final result = TxxResponse.fromJson(response.data);
       logger.i('[API SUCCESS] TxxResponse 호출 완료 (id: $id)');
       return result;
